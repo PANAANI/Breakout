@@ -2,16 +2,22 @@ package com.mygdx.breakout;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-public class Brick extends GameObject {
+public class Brick {
     boolean destroy = false;
-    int width,height;
-    public Brick(int _x, int _y, int _width, int _height) {
-        x = _x;
-        y = _y;
-        width = _width;
-        height = _height;
+    int x,y,width,height;
+    CollisionRect coll;
+    public Brick(int x, int y, int width, int height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        coll = new CollisionRect(width, height);
+        coll.updatePosition(x, y);
     }
     public void draw(ShapeRenderer sr) {
         sr.rect(x, y, width, height);
+    }
+    public void destroy() {
+        destroy = true;
     }
 }

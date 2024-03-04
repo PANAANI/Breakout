@@ -26,10 +26,13 @@ public class Breakout extends ApplicationAdapter {
 	int gap = 10;
 	int layers = 5;
 	ArrayList<Brick> bricks = new ArrayList<>();
-    @Override
+	Brick brick;
+	@Override
     public void create () {
         sr = new ShapeRenderer();
 		ball = new Ball(x, y, xSpeed, ySpeed, size);
+		brick = new Brick(300, 300, brick_width, brick_height);
+		/*
 		paddle = new Paddle(width, height);
 		int brick_x = gap;
 		for (int i = 0; i < Gdx.graphics.getWidth() / (brick_width + gap); i++) {
@@ -40,16 +43,16 @@ public class Breakout extends ApplicationAdapter {
 			}
 			brick_x += gap + brick_width;
 		}
+		*/
     }
-    @Override
+	@Override
 	public void render () {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		//ball.update(paddle, bricks);
+		ball.testBallUpdate(brick);
+		//paddle.update();
 		sr.begin(ShapeRenderer.ShapeType.Filled);
-		ball.update(paddle, bricks);
-		ball.draw(sr);
-		paddle.update();
-		paddle.draw(sr);
-		for (int i = 0; i < bricks.size(); i++) {
+		/*for (int i = 0; i < bricks.size(); i++) {
 			Brick brick = bricks.get(i);
 			if (brick.destroy == true) {
 				bricks.remove(brick);
@@ -57,7 +60,10 @@ public class Breakout extends ApplicationAdapter {
 				continue;
 			}
 			brick.draw(sr);
-		}
+		}*/
+		ball.draw(sr);
+		brick.draw(sr);
+		//paddle.draw(sr);
 		sr.end();
     }
 }
