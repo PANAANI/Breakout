@@ -12,8 +12,8 @@ public class Breakout extends ApplicationAdapter {
 	// Ball properties
 	int y = 50;
 	int x = 50;
-	int xSpeed = 5;
-	int ySpeed = 5;
+	int xSpeed = 3;
+	int ySpeed = 3;
 	int size = 10;
 	Ball ball;
 	// Paddle properties
@@ -31,8 +31,6 @@ public class Breakout extends ApplicationAdapter {
     public void create () {
         sr = new ShapeRenderer();
 		ball = new Ball(x, y, xSpeed, ySpeed, size);
-		brick = new Brick(300, 300, brick_width, brick_height);
-		/*
 		paddle = new Paddle(width, height);
 		int brick_x = gap;
 		for (int i = 0; i < Gdx.graphics.getWidth() / (brick_width + gap); i++) {
@@ -43,16 +41,14 @@ public class Breakout extends ApplicationAdapter {
 			}
 			brick_x += gap + brick_width;
 		}
-		*/
     }
 	@Override
 	public void render () {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		//ball.update(paddle, bricks);
-		ball.testBallUpdate(brick);
-		//paddle.update();
+		ball.update(paddle, bricks);
+		paddle.update();
 		sr.begin(ShapeRenderer.ShapeType.Filled);
-		/*for (int i = 0; i < bricks.size(); i++) {
+		for (int i = 0; i < bricks.size(); i++) {
 			Brick brick = bricks.get(i);
 			if (brick.destroy == true) {
 				bricks.remove(brick);
@@ -60,10 +56,9 @@ public class Breakout extends ApplicationAdapter {
 				continue;
 			}
 			brick.draw(sr);
-		}*/
+		}
 		ball.draw(sr);
-		brick.draw(sr);
-		//paddle.draw(sr);
+		paddle.draw(sr);
 		sr.end();
     }
 }

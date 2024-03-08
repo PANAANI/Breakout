@@ -17,22 +17,4 @@ public class CollisionCircle extends Collision2D {
         // TODO: implement this
         return true;
     }
-    // Returns the side the rectangle collider hit
-    // 0 is upper side
-    // 1 is left side
-    // 2 is bottom side
-    // 3 is right side
-    public void checkCollisionSide(CollisionRect coll) {
-        float xDist = x - (coll.x + coll.getWidth() / 2);
-        float yDist = y - (coll.y + coll.getHeight() / 2);
-        float magnitude = (float)Math.sqrt(Math.pow(Math.abs(xDist), 2) + Math.pow(Math.abs(yDist), 2));
-        float angle = 0;
-        if (yDist >= 0) {
-            angle = (float)(Math.acos(xDist / magnitude));
-        } else {
-            angle = (float)(2 * Math.PI - Math.acos(xDist / magnitude));
-        }
-        System.out.println(angle / Math.PI);
-         
-    }
 }

@@ -8,13 +8,13 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 public class Ball {
     int x,y,radius,xSpeed,ySpeed;
     CollisionCircle coll;
-    public Ball (int _x, int _y, int _xSpeed, int _ySpeed, int _radius) {
-        x = _x;
-        y = _y;
-        xSpeed = _xSpeed;
-        ySpeed = _ySpeed;
-        radius = _radius;
-        coll = new CollisionCircle(_radius);
+    public Ball (int x, int y, int xSpeed, int ySpeed, int radius) {
+        this.x = x;
+        this.y = y;
+        this.xSpeed = xSpeed;
+        this.ySpeed = ySpeed;
+        this.radius = radius;
+        coll = new CollisionCircle(radius);
     }
     public void update(Paddle paddle, ArrayList<Brick> bricks) {
         x += xSpeed;
@@ -31,16 +31,15 @@ public class Ball {
         }
         for (Brick brick : bricks) {
             if (coll.collidesWith(brick.coll)) {
+                if ((y > brick.y - radius / 2 && y < brick.y + brick.height + radius / 2)) {
+                    xSpeed = -xSpeed;
+                } else {
+                    ySpeed = -ySpeed;
+                }
                 brick.destroy();
                 break;
             }
         }
-    }
-    public void testBallUpdate (Brick brick) {
-        x = Gdx.input.getX();
-        y = Gdx.graphics.getHeight() - Gdx.input.getY();
-        coll.updatePosition(x, y);
-        coll.checkCollisionSide(brick.coll);
     }
     public void draw(ShapeRenderer sr) {
         sr.circle(x, y, radius);
