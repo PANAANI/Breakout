@@ -44,7 +44,7 @@ public class Breakout extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		ball.update(paddle, bricks);
 		paddle.update();
-		sr.begin(ShapeRenderer.ShapeType.Filled);
+		sr.begin(ShapeRenderer.ShapeType.Line);
 		for (int i = 0; i < bricks.size(); i++) {
 			Brick brick = bricks.get(i);
 			if (brick.getDestroy()) {
