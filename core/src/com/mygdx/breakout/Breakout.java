@@ -10,18 +10,18 @@ import com.badlogic.gdx.graphics.GL20;
 public class Breakout extends ApplicationAdapter {
     ShapeRenderer sr;
 	// Ball properties
-	int speed = 4; 
-	int size = 10;
+	final int speed = 4; 
+	final int size = 10;
 	Ball ball;
 	// Paddle properties
-	int width = 80;
-	int height = 5;
+	final int width = 80;
+	final int height = 5;
 	Paddle paddle;
 	// Brick properties
-	int brick_width = 80;
-	int brick_height = 30;
-	int gap = 10;
-	int layers = 5;
+	final int brick_width = 80;
+	final int brick_height = 30;
+	final int gap = 10;
+	final int layers = 5;
 	ArrayList<Brick> bricks = new ArrayList<>();
 	Brick brick;
 	@Override
