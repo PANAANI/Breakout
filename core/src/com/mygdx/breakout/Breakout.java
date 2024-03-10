@@ -10,10 +10,7 @@ import com.badlogic.gdx.graphics.GL20;
 public class Breakout extends ApplicationAdapter {
     ShapeRenderer sr;
 	// Ball properties
-	int y = 50;
-	int x = 50;
-	int xSpeed = 3;
-	int ySpeed = 3;
+	int speed = 4; 
 	int size = 10;
 	Ball ball;
 	// Paddle properties
@@ -30,7 +27,7 @@ public class Breakout extends ApplicationAdapter {
 	@Override
     public void create () {
         sr = new ShapeRenderer();
-		ball = new Ball(x, y, xSpeed, ySpeed, size);
+		ball = new Ball(speed, size);
 		paddle = new Paddle(width, height);
 		int brick_x = gap;
 		for (int i = 0; i < Gdx.graphics.getWidth() / (brick_width + gap); i++) {
@@ -50,7 +47,7 @@ public class Breakout extends ApplicationAdapter {
 		sr.begin(ShapeRenderer.ShapeType.Filled);
 		for (int i = 0; i < bricks.size(); i++) {
 			Brick brick = bricks.get(i);
-			if (brick.destroy == true) {
+			if (brick.getDestroy()) {
 				bricks.remove(brick);
 				i--;
 				continue;

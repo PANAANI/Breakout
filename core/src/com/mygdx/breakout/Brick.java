@@ -3,9 +3,9 @@ package com.mygdx.breakout;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Brick {
-    boolean destroy = false;
-    int x,y,width,height;
-    CollisionRect coll;
+    private boolean destroy = false;
+    private int x,y,width,height;
+    private CollisionRect coll;
     public Brick(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
@@ -19,5 +19,17 @@ public class Brick {
     }
     public void destroy() {
         destroy = true;
+    }
+    public boolean getDestroy() {
+        return destroy;
+    }
+    public CollisionRect getColl() {
+        return coll;
+    }
+    public int getY() {
+        return y;
+    }
+    public int getHeight() {
+        return height;
     }
 }

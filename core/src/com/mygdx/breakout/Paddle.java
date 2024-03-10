@@ -4,8 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Paddle {
-    int x,y,width,height;
-    CollisionRect coll;
+    private int x,y,width,height;
+    private CollisionRect coll;
     public Paddle (int width, int height) {
         x = Gdx.graphics.getWidth() / 2 - width / 2;
         y = 20;
@@ -19,5 +19,20 @@ public class Paddle {
     }
     public void draw(ShapeRenderer sr) {
         sr.rect(x, y, width, height);
+    }
+    public CollisionRect getColl() {
+        return coll;
+    }
+    public int getX() {
+        return x;
+    }
+    public int getY() {
+        return y;
+    }
+    public int getHeight() {
+        return height;
+    }
+    public int getWidth() {
+        return width;
     }
 }
