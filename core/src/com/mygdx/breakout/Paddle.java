@@ -14,7 +14,7 @@ public class Paddle {
         coll = new CollisionRect(width, height);
     }
     public void update() {
-        x = Gdx.input.getX() - width / 2;
+        x = (int)(((float)Gdx.input.getX() / (float)Gdx.graphics.getWidth()) * 1280 - width / 2);
         coll.updatePosition(x, y);
     }
     public void draw(ShapeRenderer sr) {

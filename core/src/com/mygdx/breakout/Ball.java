@@ -21,10 +21,10 @@ public class Ball {
         x += xSpeed;
         y += ySpeed;
         coll.updatePosition(x, y);
-        if (y > Gdx.graphics.getHeight() - radius || y < radius) {
+        if ((y > Breakout.screen_height - radius && ySpeed > 0) || (y < radius && ySpeed < 0)) {
 			ySpeed = -ySpeed;
 		}
-        if (x > Gdx.graphics.getWidth() - radius || x < radius) {
+        if ((x > Breakout.screen_width - radius && xSpeed > 0) || (x < radius && xSpeed < 0)) {
 			xSpeed = -xSpeed;
 		}
         if (coll.collidesWith(paddle.getColl())) {
@@ -43,12 +43,9 @@ public class Ball {
         xSpeed = (float)(Math.cos(angle) * speed);
         ySpeed = (float)(Math.sin(angle) * speed);
     }
-    //TODO Figure out how to make the ball bounce properly without changing speed
     private void calculateNewSpeedVectorBrick(Brick brick) {
         if ((y > brick.getY() - radius / 2 && y < brick.getY() + brick.getHeight() + radius / 2)) {
             xSpeed = -xSpeed;
-            float angle = (float)Math.cos(xSpeed / speed);
-            System.out.println(angle / Math.PI);
         } else {
             ySpeed = -ySpeed;
         }
