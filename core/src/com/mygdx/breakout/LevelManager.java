@@ -10,17 +10,18 @@ public class LevelManager {
         this.brick_height = brick_height;
         this.layers = layers;
         this.gap = gap;
+        bricks = new ArrayList<Brick>();
     }
-    public void update() {
+    public void update(Ball ball) {
         for (int i = 0; i < bricks.size(); i++) {
 			Brick brick = bricks.get(i);
 			if (brick.getDestroy()) {
 				bricks.remove(brick);
 				i--;
-				continue;
 			}
 		}
         if (bricks.isEmpty()) {
+            ball.reset();
             createLevel();
         }
     }

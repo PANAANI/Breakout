@@ -58,6 +58,12 @@ public class Ball {
             ySpeed = -ySpeed;
         }
     }
+    public void reset() {
+        xSpeed = 0;
+        ySpeed = speed;
+        x = Gdx.graphics.getWidth() / 2;
+        y = 100;
+    }
     public void draw(ShapeRenderer sr) {
         sr.circle(x, y, radius);
     }

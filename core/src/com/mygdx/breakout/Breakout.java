@@ -1,9 +1,8 @@
 package com.mygdx.breakout;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.graphics.GL20;
@@ -13,7 +12,7 @@ public class Breakout extends ApplicationAdapter {
 	public final static int screen_width = 1280;
 	public final static int screen_height = 720;
 	// Ball properties
-	private final int speed = 6; 
+	private final int speed = 7; 
 	private final int size = 10;
 	private Ball ball;
 	// Paddle properties
@@ -29,6 +28,7 @@ public class Breakout extends ApplicationAdapter {
 	private OrthographicCamera cam;
 	private FitViewport fitViewport;
     private ShapeRenderer sr;
+	private boolean start = false;
 	@Override
     public void create () {
         sr = new ShapeRenderer();
@@ -43,8 +43,13 @@ public class Breakout extends ApplicationAdapter {
 	@Override
 	public void render () {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		ball.update(paddle, manager.getBricks());
-		paddle.update();
+		if (start == true) {
+			ball.update(paddle, manager.getBricks());
+			paddle.update();
+			manager.update(ball);
+		} else if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
+			start = true;
+		} 
 		sr.setProjectionMatrix(fitViewport.getCamera().combined);
 		sr.begin(ShapeRenderer.ShapeType.Filled);
 		for (Brick brick : manager.getBricks()) {
